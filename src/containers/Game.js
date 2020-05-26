@@ -1,9 +1,8 @@
 import { connect } from 'react-redux';
-import App from '../App'
+import App from '../App';
 import { moveObjects, startGame } from '../actions/index';
 
-const mapStateToProps = state => ({
-    //message: state.message,
+const mapStateToProps = state => ({    
     angle: state.angle,
     gameState: state.gameState,
 });
