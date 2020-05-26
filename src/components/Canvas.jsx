@@ -45,26 +45,24 @@ const Canvas = (props) => {
             }
             {props.gameState.started &&
                 <g>
-                    <FlyingObject position={{ x: -150, y: -300 }} />
-                    <FlyingObject position={{ x: 150, y: -300 }} />
+                    {props.gameState.flyingObjects.map(flyingObject => (
+                        <FlyingObject
+                            key={flyingObject.id}
+                            position={flyingObject.position}
+                        />
+                    ))}
                 </g>
             }
             
-            <Heart position={{x: -300, y: 35}} />  
-
-            {props.gameState.flyingObjects.map(flyingObject => (
-                <FlyingObject
-                    key={flyingObject.id}
-                    position={flyingObject.position}
-                />
-            ))}
-
+            <Heart position={{x: -300, y: 35}} />
+            
         </svg>
     );
 };
 
 Canvas.propTypes = {
     angle: PropTypes.number.isRequired,
+
     gameState: PropTypes.shape({
         started: PropTypes.bool.isRequired,
         kills: PropTypes.number.isRequired,
@@ -77,7 +75,9 @@ Canvas.propTypes = {
             id: PropTypes.number.isRequired,
         })).isRequired,
     }).isRequired,
+
     trackMouse: PropTypes.func.isRequired,
+    
     startGame: PropTypes.func.isRequired,
 };
 
